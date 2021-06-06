@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" class="js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task Management</title>
+<link href="css/simpleGridTemplate.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- Written by: Mitchell Jacobs on 6/5/2021 -->
+</head>
+<body>
+<!-- Main Container -->
+<div class="container" id="app"> 
+  <!-- Header -->
+  <header class="header">
+    <h4 class="logo"></h4>
+  </header>
+  <!-- Hero Section -->
+  <section class="intro">
+    <div class="column">
+      <h3>Task Management</h3>
+      <button type="button" class="button" v-on:click="clearTasks"> Clear Tasks </button>
+      <button type="button" class="button" v-on:click="importTasks"> Import Tasks </button>
+      <button type="button" class="button" v-on:click="saveTasks"> Save Tasks </button>
+    </div>
+    <div class="column" style="padding-top: 10%">
+      <div class="addTask">
+        <label for="title">Title: </label>
+        <input v-model="title">
+        <label for="desc">Description: </label>
+        <input v-model="desc">
+        <label for="date">Date: </label>
+        <input v-model="date">
+        <button type="button" class="button" style="width: 100%;" v-on:click="addTask(title,desc,date)"> Add Task </button>
+      </div>
+    </div>
+  </section>
+  <!-- Stats Gallery Section -->
+  <div>
+      <ol class="content">
+          <li v-for="task in tasks">
+            <div class="gallery">
+                <div class="thumbnail"> 
+                    <p class="tag">{{ task.date.getMonth()+1 + '/' + task.date.getDate() }}</p>
+                    <h4>{{ task.title }}</h4>
+                    <p>{{ task.desc }}</p>
+                    <button type="button" class="buttonTask" v-on:click="deleteTask(task.title)"> Remove </button>
+                </div>
+            </div>
+          </li>
+      </ol>
+  </div>
+
+<!-- Main Container Ends -->
+</div>
+<script src="index.js"></script>
+</body>
+</html>
